@@ -1,0 +1,56 @@
+.container {
+  height: auto;
+  width: 450px;
+  margin: 0 auto;
+  padding-top: 140px;
+  outline: 2px solid black;
+  background-color: white;
+  padding-left: 2em;
+  padding-right: 2em;
+  min-height: 1000px;
+}
+
+.container .new-tweet {
+  height: 180px;
+  width: 100%;
+  background-color: #eeeeee;
+  margin: 0 auto 0;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 2px solid black;
+  padding: 5px;
+}
+
+.container .new-tweet form {
+  height: 100%;
+  position: relative;
+}
+
+.container .new-tweet h2 {
+  margin: 0;
+  border-bottom: 1px solid blue;
+  /*text-align: center;*/
+}
+
+.container .new-tweet form textarea {
+  display: block;
+  margin: 20px auto 10px;
+  width: 100%;
+  height: 45%;
+  padding: 5px;
+  overflow: hidden;
+}
+
+.container .new-tweet form input {
+  display: block;
+  /*float: left;*/
+  margin: 0;
+  position: absolute;
+  left: 0;
+}
+
+.container .new-tweet form .counter {
+  margin: 0;
+  position: absolute;
+  right: 0;
+}
