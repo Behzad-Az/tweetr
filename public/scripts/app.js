@@ -11,26 +11,32 @@ $(function () {
     event.preventDefault();
     let url = $form.attr('action');
     let method = $form.attr('method');
-    // let content = $form.find('textarea').val(); used serialize function instead
-    // console.log(content);
+    let content = $form.find('textarea').val();
     // content = $form.serialize();
-    // console.log(content);
 
-    console.log($form.serialize());
-
-    // let dataObj = {      Not used
-    //   text: content,
-    //   user: "Behzad"
-    // }
-
-    $.ajax({
-      type: method,
-      url: url,
-      data: $form.serialize(),
-      success: function () {
-        console.log('success');
-      }
-    });
+    if (!content) { alert('Don\'t forget to enter tweet first!'); }
+    else if (content.length > 140) { alert('Please shorten your tweet to less than or equal to 140 chars'); }
+    else {
+      $.ajax({
+        type: method,
+        url: url,
+        data: $form.serialize(),
+        success: function (data) {
+          console.log('success');
+        }
+      }).done(function(){
+        // Is there any way I could do this without repeating my $.ajax GET
+        $.ajax({
+          type: "GET",
+          url: "/tweets",
+          dataType: 'JSON',
+          success: function (data){
+            console.log("success in GET /tweets");
+            renderTweets(data);
+          }
+        });
+      });
+    }
   });
 
   // submit jQuery GET request from /tweets when page is loaded
@@ -120,7 +126,7 @@ function createTweetElement (tweet) {
 function renderTweets (tweets) {
   tweets.forEach((tweet) => {
     twtElement = createTweetElement(tweet);
-    $("#dynamicTweetsContainer").append(twtElement);
+    $("#dynamicTweetsContainer").prepend(twtElement);
   });
 
   $('.tweet').css({
@@ -186,3 +192,5 @@ function renderTweets (tweets) {
     'padding-left': '5px'
   });
 }
+
+
