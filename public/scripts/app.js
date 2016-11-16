@@ -31,7 +31,7 @@ $(function () {
   function renderTweets (tweets) {
     tweetData.forEach((tweet) => {
       twtElement = createTweetElement(tweet);
-      $("#dynamicTweetLog").append(twtElement);
+      $("#dynamicTweetsContainer").append(twtElement);
     });
 
     $('.tweet').css({
