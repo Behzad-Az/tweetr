@@ -5,100 +5,45 @@
  */
 $(function () {
 
-  // create html element of each tweet object
-  function createTweetElement (tweet) {
-    let avatar = $('<img>').attr("src", tweet['user']['avatars']['regular']);
-    let username = $('<h2>').text(tweet['user']['name']);
-    let handle = $('<p>').text(tweet['user']['handle']);
+  // submit jQuery POST request when form is submitted
+  let $form = $(".new-tweet form");
+  $form.submit( function (event) {
+    event.preventDefault();
+    let url = $form.attr('action');
+    let method = $form.attr('method');
+    // let content = $form.find('textarea').val(); used serialize function instead
+    // console.log(content);
+    // content = $form.serialize();
+    // console.log(content);
 
-    let content = $('<p>').text(tweet['content']['text']);
+    console.log($form.serialize());
 
-    let date = $('<p>').text(tweet['created_at']);
+    // let dataObj = {      Not used
+    //   text: content,
+    //   user: "Behzad"
+    // }
 
-    var $tweet = $("<article>").addClass("tweet");
-    var header = $('<header>');
-    var middle = $('<div>');
-    var footer = $('<footer>');
-    header.append(avatar, username, handle);
-    middle.append(content);
-    footer.append(date);
-
-    $tweet.append(header, middle, footer);
-    return $tweet;
-  }
-
-  // render the tweet objects.
-  function renderTweets (tweets) {
-    tweetData.forEach((tweet) => {
-      twtElement = createTweetElement(tweet);
-      $("#dynamicTweetsContainer").append(twtElement);
+    $.ajax({
+      type: method,
+      url: url,
+      data: $form.serialize(),
+      success: function () {
+        console.log('success');
+      }
     });
+  });
 
-    $('.tweet').css({
-      'height': '180px',
-      'width': '100%',
-      'background-color': 'white',
-      'margin': '20px auto',
-      'overflow': 'hidden',
-      'border-radius': '10px',
-      'border': '2px solid black'
-     });
+  // submit jQuery GET request from /tweets when page is loaded
+  $.ajax({
+    type: "GET",
+    url: "/tweets",
+    dataType: 'JSON',
+    success: function (data){
+      console.log("success in GET /tweets");
+      renderTweets(data);
+    }
+  });
 
-    $('.tweet header').css({
-      'height': '60px',
-      'background-color': '#eeeeee',
-      'border-bottom': '1px solid grey'
-    });
-
-    $('.tweet header h2').css({
-      'margin': '0',
-      'line-height': '60px',
-      'padding-left': '0',
-      'display': 'inline-block'
-    });
-
-    $('.tweet header img').css({
-      'height': '60px',
-      'width': '60px',
-      'padding-top': '5px',
-      'padding-bottom': '5px',
-      'background-repeat': 'no-repeat',
-      'background-size': 'cover',
-      'background-position': 'center center',
-      'margin': '0',
-      'padding-right': '10px',
-      'border-radius': '50%',
-      'float': 'left',
-      'padding-left': '10px'
-    });
-
-    $('.tweet header p').css({
-      'margin': '0',
-      'line-height': '60px',
-      'float': 'right',
-      'padding-right': '10px'
-    });
-
-    $('.tweet div').css({
-      'height': '90px',
-      'margin': '0',
-      'padding': '5px',
-      'border-bottom': '1px solid grey'
-    });
-
-    $('.tweet footer').css({
-      'margin': '0',
-    });
-
-    $('.tweet footer p').css({
-      'margin': '0',
-      'line-height': '30px',
-      'font-size': '12px',
-      'padding-left': '5px'
-    });
-  }
-
-  renderTweets(tweetData);
 });
 
 // hard coded tweet data.
@@ -148,3 +93,96 @@ var tweetData = [
     "created_at": 1461113796368
   }
 ];
+
+// create html element of each tweet object
+function createTweetElement (tweet) {
+  let avatar = $('<img>').attr("src", tweet['user']['avatars']['regular']);
+  let username = $('<h2>').text(tweet['user']['name']);
+  let handle = $('<p>').text(tweet['user']['handle']);
+
+  let content = $('<p>').text(tweet['content']['text']);
+
+  let date = $('<p>').text(tweet['created_at']);
+
+  var $tweet = $("<article>").addClass("tweet");
+  var header = $('<header>');
+  var middle = $('<div>');
+  var footer = $('<footer>');
+  header.append(avatar, username, handle);
+  middle.append(content);
+  footer.append(date);
+
+  $tweet.append(header, middle, footer);
+  return $tweet;
+}
+
+// render the tweet objects.
+function renderTweets (tweets) {
+  tweets.forEach((tweet) => {
+    twtElement = createTweetElement(tweet);
+    $("#dynamicTweetsContainer").append(twtElement);
+  });
+
+  $('.tweet').css({
+    'height': '180px',
+    'width': '100%',
+    'background-color': 'white',
+    'margin': '20px auto',
+    'overflow': 'hidden',
+    'border-radius': '10px',
+    'border': '2px solid black'
+   });
+
+  $('.tweet header').css({
+    'height': '60px',
+    'background-color': '#eeeeee',
+    'border-bottom': '1px solid grey'
+  });
+
+  $('.tweet header h2').css({
+    'margin': '0',
+    'line-height': '60px',
+    'padding-left': '0',
+    'display': 'inline-block'
+  });
+
+  $('.tweet header img').css({
+    'height': '60px',
+    'width': '60px',
+    'padding-top': '5px',
+    'padding-bottom': '5px',
+    'background-repeat': 'no-repeat',
+    'background-size': 'cover',
+    'background-position': 'center center',
+    'margin': '0',
+    'padding-right': '10px',
+    'border-radius': '30%',
+    'float': 'left',
+    'padding-left': '10px'
+  });
+
+  $('.tweet header p').css({
+    'margin': '0',
+    'line-height': '60px',
+    'float': 'right',
+    'padding-right': '10px'
+  });
+
+  $('.tweet div').css({
+    'height': '90px',
+    'margin': '0',
+    'padding': '5px',
+    'border-bottom': '1px solid grey'
+  });
+
+  $('.tweet footer').css({
+    'margin': '0',
+  });
+
+  $('.tweet footer p').css({
+    'margin': '0',
+    'line-height': '30px',
+    'font-size': '12px',
+    'padding-left': '5px'
+  });
+}
