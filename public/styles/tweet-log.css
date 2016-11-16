@@ -1,0 +1,68 @@
+#tweetLog {
+  height: 180px;
+  width: 100%;
+  background-color: white;
+  margin: 20px auto;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 2px solid black;
+  /*padding: 5px;*/
+
+}
+
+#tweetLog article header {
+  height: 60px;
+  background-color: #eeeeee;
+  border-bottom: 1px solid grey;
+}
+
+#tweetLog article header h2 {
+  margin: 0;
+  line-height: 60px;
+  padding-left:0;
+  display: inline-block;
+}
+
+#tweetLog article header img {
+  height: 60px;
+  width: 60px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  margin: 0;
+  padding-right: 10px;
+  border-radius: 50%;
+/*  display: inline-block;
+  left: 20px;
+  position: relative;
+  left: 0px;*/
+  float: left;
+  padding-left: 10px;
+}
+
+#tweetLog article header p {
+  margin: 0;
+  line-height: 60px;
+  float: right;
+  padding-right: 10px;
+}
+
+#tweetLog article .content {
+  height: 90px;
+  margin: 0;
+  padding: 5px;
+  border-bottom: 1px solid grey;
+}
+
+#tweetLog article footer {
+  margin: 0;
+}
+
+#tweetLog article footer p {
+  margin: 0;
+  line-height: 30px;
+  font-size: 12px;
+  padding-left: 5px;
+}
