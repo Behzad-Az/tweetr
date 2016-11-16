@@ -6,7 +6,6 @@
   overflow: hidden;
   border-radius: 10px;
   border: 2px solid black;
-  /*padding: 5px;*/
 
 }
 
@@ -34,10 +33,6 @@
   margin: 0;
   padding-right: 10px;
   border-radius: 50%;
-/*  display: inline-block;
-  left: 20px;
-  position: relative;
-  left: 0px;*/
   float: left;
   padding-left: 10px;
 }
@@ -49,7 +44,7 @@
   padding-right: 10px;
 }
 
-#tweetLog article .content {
+#tweetLog article div {
   height: 90px;
   margin: 0;
   padding: 5px;

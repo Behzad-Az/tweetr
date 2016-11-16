@@ -5,69 +5,103 @@
  */
 $(function () {
 
-  function createTweetElement (tweetData) {
+  // create html element of each tweet object
+  function createTweetElement (tweet) {
+    let avatar = $('<img>').attr("src", tweet['user']['avatars']['regular']);
+    let username = $('<h2>').text(tweet['user']['name']);
+    let handle = $('<p>').text(tweet['user']['handle']);
+
+    let content = $('<p>').text(tweet['content']['text']);
+
+    let date = $('<p>').text(tweet['created_at']);
+
+    var $tweet = $("<article>").addClass("tweet");
+    var header = $('<header>');
+    var middle = $('<div>');
+    var footer = $('<footer>');
+    header.append(avatar, username, handle);
+    middle.append(content);
+    footer.append(date);
+
+    $tweet.append(header, middle, footer);
+    return $tweet;
+  }
+
+  // render the tweet objects.
+  function renderTweets (tweets) {
     tweetData.forEach((tweet) => {
-      let avatar = $('<img>').attr("src", tweet['user']['avatars']['regular']);
-      let username = $('<h2>').text(tweet['user']['name']);
-      let handle = $('<p>').text(tweet['user']['handle']);
+      twtElement = createTweetElement(tweet);
+      $("#dynamicTweetLog").append(twtElement);
+    });
 
-      let content = $('<p>').text(tweet['content']['text']);
+    $('.tweet').css({
+      'height': '180px',
+      'width': '100%',
+      'background-color': 'white',
+      'margin': '20px auto',
+      'overflow': 'hidden',
+      'border-radius': '10px',
+      'border': '2px solid black'
+     });
 
-      let date = $('<p>').text(tweet['created_at']);
+    $('.tweet header').css({
+      'height': '60px',
+      'background-color': '#eeeeee',
+      'border-bottom': '1px solid grey'
+    });
 
-      var $tweet = $("<article>").addClass("aName");
-      var header = $('<header>');
-      var middle = $('<div>');
-      var footer = $('<footer>');
-      header.append(avatar, username, handle);
-      middle.append(content);
-      footer.append(date);
+    $('.tweet header h2').css({
+      'margin': '0',
+      'line-height': '60px',
+      'padding-left': '0',
+      'display': 'inline-block'
+    });
 
-      $tweet.append(header, middle, footer);
-      $(".container").append($tweet);
+    $('.tweet header img').css({
+      'height': '60px',
+      'width': '60px',
+      'padding-top': '5px',
+      'padding-bottom': '5px',
+      'background-repeat': 'no-repeat',
+      'background-size': 'cover',
+      'background-position': 'center center',
+      'margin': '0',
+      'padding-right': '10px',
+      'border-radius': '50%',
+      'float': 'left',
+      'padding-left': '10px'
+    });
+
+    $('.tweet header p').css({
+      'margin': '0',
+      'line-height': '60px',
+      'float': 'right',
+      'padding-right': '10px'
+    });
+
+    $('.tweet div').css({
+      'height': '90px',
+      'margin': '0',
+      'padding': '5px',
+      'border-bottom': '1px solid grey'
+    });
+
+    $('.tweet footer').css({
+      'margin': '0',
+    });
+
+    $('.tweet footer p').css({
+      'margin': '0',
+      'line-height': '30px',
+      'font-size': '12px',
+      'padding-left': '5px'
     });
   }
 
+  renderTweets(tweetData);
+});
 
-
-
-
-
-
-//   function createTweets (tweets) {
-//     tweetData.forEach((tweet) => {
-//       twtElement = createTweetElement(tweet);
-//       let avatar = $('<img>').attr("src", tweet['user']['avatars']['regular']);
-//       let username = $('<h2>').text(tweet['user']['name']);
-//       let handle = $('<p>').text(tweet['user']['handle']);
-
-//       let content = $('<p>').text(tweet['content']['text']);
-
-//       let date = $('<p>').text(tweet['created_at']);
-
-//       var $tweet = $("<article>").addClass("aName");
-//       var header = $('<header>');
-//       var middle = $('<div>');
-//       var footer = $('<footer>');
-//       header.append(avatar, username, handle);
-//       middle.append(content);
-//       footer.append(date);
-
-//       $tweet.append(header, middle, footer);
-//       $(".container").append($tweet);
-//     });
-
-//   }
-
-//   createTweetElement(tweetData);
-// });
-
-
-
-
-
-
-
+// hard coded tweet data.
 var tweetData = [
   {
     "user": {
@@ -114,4 +148,3 @@ var tweetData = [
     "created_at": 1461113796368
   }
 ];
-
