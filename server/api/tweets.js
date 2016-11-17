@@ -16,8 +16,6 @@ module.exports = function(db) {
 
   // /tweets
   tweets.post("/", function(req, res) {
-    console.log(req.body);
-    console.log("I am in tweets.post(/)")
     if (!req.body.text) {
       res.status(400);
       return res.send("{'error': 'invalid request'}\n");

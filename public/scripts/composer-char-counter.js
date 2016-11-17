@@ -10,8 +10,6 @@ $(document).ready( function () {
   });
 });
 
-
-
 const regexAstralSymbols = /[\uD800-\uDBFF][\uDC00-\uDFFF]/g;
 
 function countSymbols(string) {

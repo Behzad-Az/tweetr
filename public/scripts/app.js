@@ -25,48 +25,17 @@ $(function () {
         url: url,
         data: $form.serialize(),
         success: function (data) {
-          console.log('success');
+          console.log('success in POST /Tweets');
           txtArea.val('');
           charCounter.text('140');
         }
       }).done(function(){
-        $.ajax({
-          type: "GET",
-          url: "/tweets",
-          dataType: 'JSON',
-          success: function (data){
-            console.log("success in GET /tweets");
-
-            renderTweets(data);
-            $('.tweet').on('mouseenter', function(event) {
-              hoverEnterEffect($(this));
-            }).on('mouseleave', function(event) {
-              hoverExitEffect($(this));
-            });
-          }
-        });
-
+        $ajaxGETLoadTweets();
       });
     }
   });
 
-
-
-  // submit jQuery GET request from /tweets when page is loaded
- $.ajax({
-    type: "GET",
-    url: "/tweets",
-    dataType: 'JSON',
-    success: function (data){
-      console.log("success in GET /tweets");
-      renderTweets(data);
-      $('.tweet').on('mouseenter', function(event) {
-        hoverEnterEffect($(this));
-      }).on('mouseleave', function(event) {
-        hoverExitEffect($(this));
-      });
-    }
-  });
+  $ajaxGETLoadTweets();
 
 });
 
@@ -268,5 +237,23 @@ function getTimePassed(time) {
   else tempTime = Math.round(tempTime/365);
 
   return `${tempTime} years ago`;
+}
+
+// submit jQuery GET request from /tweets when page is loaded
+function $ajaxGETLoadTweets(){
+  $.ajax({
+    type: "GET",
+    url: "/tweets",
+    dataType: 'JSON',
+    success: function (data){
+      console.log("success in GET /tweets");
+      renderTweets(data);
+      $('.tweet').on('mouseenter', function(event) {
+        hoverEnterEffect($(this));
+      }).on('mouseleave', function(event) {
+        hoverExitEffect($(this));
+      });
+    }
+  });
 }
 
