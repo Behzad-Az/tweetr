@@ -11,7 +11,9 @@ $(function () {
     event.preventDefault();
     let url = $form.attr('action');
     let method = $form.attr('method');
-    let content = $form.find('textarea').val();
+    let txtArea = $form.find('textarea');
+    let content = txtArea.val();
+
     // content = $form.serialize();
 
     if (!content) { alert('Don\'t forget to enter tweet first!'); }
@@ -23,6 +25,7 @@ $(function () {
         data: $form.serialize(),
         success: function (data) {
           console.log('success');
+          txtArea.val('');
         }
       }).done(function(){
         $.ajax({
@@ -31,6 +34,7 @@ $(function () {
           dataType: 'JSON',
           success: function (data){
             console.log("success in GET /tweets");
+
             renderTweets(data);
 
             $('.tweet').on('mouseenter', function(event) {
