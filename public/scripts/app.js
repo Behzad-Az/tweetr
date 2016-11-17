@@ -25,7 +25,6 @@ $(function () {
           console.log('success');
         }
       }).done(function(){
-        // Is there any way I could do this without repeating my $.ajax GET
         $.ajax({
           type: "GET",
           url: "/tweets",
@@ -47,13 +46,14 @@ $(function () {
   });
 
   // submit jQuery GET request from /tweets when page is loaded
-  var fcn = $.ajax({
+  $.ajax({
     type: "GET",
     url: "/tweets",
     dataType: 'JSON',
     success: function (data){
       console.log("success in GET /tweets");
       renderTweets(data);
+
       $('.tweet').on('mouseenter', function(event) {
         hoverEnterEffect($(this));
       }).on('mouseleave', function(event) {
@@ -119,8 +119,7 @@ function createTweetElement (tweet) {
   let handle = $('<p>').text(tweet['user']['handle']);
 
   let content = $('<p>').text(tweet['content']['text']);
-
-  let date = $('<p>').text(tweet['created_at']);
+  let date = $('<p>').text(getTimePassed(tweet['created_at']));
 
   var $tweet = $("<article>").addClass("tweet");
   var header = $('<header>');
@@ -247,3 +246,21 @@ function hoverExitEffect(jTweet) {
   let footer = jTweet.find('footer');
   footer.find('img').remove();
 }
+
+// converts javascript time to time passed in minutes, days or years.
+function getTimePassed(time) {
+  let diff = Date.now() - time;
+  let tempTime = Math.round(diff/60000);
+  if (tempTime < 1) return 'less than a minute ago';
+  else if (tempTime < 60) return  `${tempTime} minutes ago`;
+  else tempTime = Math.round(tempTime / 60);
+
+  if (tempTime < 24) return `${tempTime} hours ago`;
+  else tempTime = Math.round(tempTime/24);
+
+  if (tempTime < 365) return `${tempTime} days ago`;
+  else tempTime = Math.round(tempTime/365);
+
+  return `${tempTime} years ago`;
+}
+
