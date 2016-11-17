@@ -12,6 +12,7 @@ $(function () {
     let url = $form.attr('action');
     let method = $form.attr('method');
     let txtArea = $form.find('textarea');
+    let charCounter = $form.find('.counter');
     let content = txtArea.val();
 
     // content = $form.serialize();
@@ -26,6 +27,7 @@ $(function () {
         success: function (data) {
           console.log('success');
           txtArea.val('');
+          charCounter.text('140');
         }
       }).done(function(){
         $.ajax({
@@ -36,7 +38,6 @@ $(function () {
             console.log("success in GET /tweets");
 
             renderTweets(data);
-
             $('.tweet').on('mouseenter', function(event) {
               hoverEnterEffect($(this));
             }).on('mouseleave', function(event) {
@@ -49,15 +50,16 @@ $(function () {
     }
   });
 
+
+
   // submit jQuery GET request from /tweets when page is loaded
-  $.ajax({
+ $.ajax({
     type: "GET",
     url: "/tweets",
     dataType: 'JSON',
     success: function (data){
       console.log("success in GET /tweets");
       renderTweets(data);
-
       $('.tweet').on('mouseenter', function(event) {
         hoverEnterEffect($(this));
       }).on('mouseleave', function(event) {
@@ -206,7 +208,7 @@ function renderTweets (tweets) {
     'line-height': '30px',
     'font-size': '12px',
     'padding-left': '15px',
-    'padding-right': '200px',
+    'padding-right': '150px',
     'display': 'inline-block'
   });
 }

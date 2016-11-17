@@ -1,7 +1,7 @@
 $(document).ready( function () {
   let txtArea = $(".container .new-tweet form textarea");
 
-  txtArea.on("input", function(event) {
+  txtArea.on("input change empty", function(event) {
     let counter = $(".container .new-tweet form .counter");
     let count = 140 - countSymbols($(this).val());
     let color = count < 0 ? 'red' : 'black';
