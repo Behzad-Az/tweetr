@@ -15,8 +15,6 @@ $(function () {
     let charCounter = $form.find('.counter');
     let content = txtArea.val();
 
-    // content = $form.serialize();
-
     if (!content) { alert('Don\'t forget to enter tweet first!'); }
     else if (content.length > 140) { alert('Please shorten your tweet to less than or equal to 140 chars'); }
     else {
@@ -110,6 +108,7 @@ function createTweetElement (tweet) {
 
 // render the tweet objects.
 function renderTweets (tweets) {
+  $('#dynamicTweetsContainer').empty();
   tweets.forEach((tweet) => {
     twtElement = createTweetElement(tweet);
     $("#dynamicTweetsContainer").prepend(twtElement);
