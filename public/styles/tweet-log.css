@@ -1,11 +1,11 @@
 #tweetLog {
-  height: 180px;
+  height: 10px;
   width: 100%;
   background-color: white;
   margin: 20px auto;
   overflow: hidden;
   border-radius: 10px;
-  border: 2px solid black;
+  border-right: 2px solid black;
 }
 
 #tweetLog article header {
@@ -53,6 +53,11 @@
 #tweetLog article footer {
   margin: 0;
 }
+
+/*#tweetLog article footer img {
+  float: left;
+  opacity: .5;
+}*/
 
 #tweetLog article footer p {
   margin: 0;
