@@ -11,7 +11,6 @@ module.exports = function makeDataHelpers(db) {
 db.collection('tweets').find().sort( { "created_at" : -1 } );
 
   return {
-
     // Saves a tweet to `db`
     saveTweet: function(newTweet, callback) {
       simulateDelay(() => {

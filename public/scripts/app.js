@@ -96,6 +96,7 @@ function createTweetElement (tweet) {
 
   var $tweet = $("<article>").addClass("tweet");
   var header = $('<header>');
+  header.attr('id', tweet["_id"]);
   var middle = $('<div>');
   var footer = $('<footer>');
   header.append(avatar, username, handle);
@@ -206,7 +207,13 @@ function hoverEnterEffect(jTweet) {
   greenHeart.css({'display': 'inline-block'});
   greenHeart.css({'vertical-align': 'middle'});
 
-  footer.append(greenFlag, greenRetweet, greenHeart);
+  let greenDelete = $('<img>').attr("src", '/images/greenDelete.png');
+  greenDelete.attr("class", 'dltTwtBtn');
+  greenDelete.css({'height':'15px'});
+  greenDelete.css({'display': 'inline-block'});
+  greenDelete.css({'vertical-align': 'middle'});
+
+  footer.append(greenFlag, greenRetweet, greenHeart, greenDelete);
 }
 
 // render tweet when mouse leaves it.
