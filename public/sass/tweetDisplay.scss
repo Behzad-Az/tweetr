@@ -1,0 +1,94 @@
+// SCSS for displaying the tweets from the database.
+$headerHeight: 60px;
+$footerHeight: 25px;
+$hoverImgHeight: 15px;
+$contentPadding: 10px;
+$defaultGrayColor: #eeeeee;
+
+.tweet {
+  background-color: white;
+  border: 1px solid #bec0c4;
+  border-radius: 10px;
+  margin: 20px auto;
+  overflow: hidden;
+
+  &:hover {
+    border: 2px solid gray;
+    header {
+      color: #3c3d3f;
+      font-weight: bold;
+      overflow: hidden;
+    }
+    footer {
+      img {
+        display: inline-block;
+        float: right;
+        height: $hoverImgHeight;
+      }
+    }
+  }
+
+  header {
+    background-color: $defaultGrayColor;
+    border-bottom: 1px solid $defaultGrayColor;
+    color: #05214f;
+    height: $headerHeight;
+
+    h2 {
+      display: inline-block;
+      font-size: 20px;
+      line-height: $headerHeight;
+      margin: 0;
+      padding-left: 0;
+    }
+
+    img {
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      border-radius: 30%;
+      float: left;
+      height: $headerHeight;
+      margin: 0;
+      width: 60px;
+      padding-top: $contentPadding / 2;
+      padding-bottom: $contentPadding / 2;
+      padding-right: $contentPadding;
+      padding-left: $contentPadding;
+    }
+
+    p {
+      font-size: 14px;
+      margin: 0;
+      line-height: $headerHeight;
+      float: right;
+      padding-right: $contentPadding;
+    }
+  }
+
+  div {
+    border-bottom: 1px solid $defaultGrayColor;
+    margin-top: 0;
+    max-height: px;
+    overflow: hidden;
+    word-wrap: break-word;
+
+    p {
+      margin: 0px;
+      padding: 10px;
+    }
+  }
+
+  footer {
+    height: $footerHeight;
+    margin: 0;
+    padding-left: $contentPadding;
+    padding-right: $contentPadding;
+
+    p {
+      display: inline-block;
+      font-size: 12px;
+      margin: 0;
+    }
+  }
+}

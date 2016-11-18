@@ -1,0 +1,64 @@
+.tweet {
+  background-color: white;
+  border: 1px solid #bec0c4;
+  border-radius: 10px;
+  margin: 20px auto;
+  overflow: hidden; }
+  .tweet:hover {
+    border: 2px solid gray; }
+    .tweet:hover header {
+      color: #3c3d3f;
+      font-weight: bold;
+      overflow: hidden; }
+    .tweet:hover footer img {
+      display: inline-block;
+      float: right;
+      height: 15px; }
+  .tweet header {
+    background-color: #eeeeee;
+    border-bottom: 1px solid #eeeeee;
+    color: #05214f;
+    height: 60px; }
+    .tweet header h2 {
+      display: inline-block;
+      font-size: 20px;
+      line-height: 60px;
+      margin: 0;
+      padding-left: 0; }
+    .tweet header img {
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      border-radius: 30%;
+      float: left;
+      height: 60px;
+      margin: 0;
+      width: 60px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      padding-right: 10px;
+      padding-left: 10px; }
+    .tweet header p {
+      font-size: 14px;
+      margin: 0;
+      line-height: 60px;
+      float: right;
+      padding-right: 10px; }
+  .tweet div {
+    border-bottom: 1px solid #eeeeee;
+    margin-top: 0;
+    max-height: px;
+    overflow: hidden;
+    word-wrap: break-word; }
+    .tweet div p {
+      margin: 0px;
+      padding: 10px; }
+  .tweet footer {
+    height: 25px;
+    margin: 0;
+    padding-left: 10px;
+    padding-right: 10px; }
+    .tweet footer p {
+      display: inline-block;
+      font-size: 12px;
+      margin: 0; }

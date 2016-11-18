@@ -37,54 +37,6 @@ $(function () {
 
 });
 
-// hard coded tweet data.
-var tweetData = [
-  {
-    "user": {
-      "name": "Newton",
-      "avatars": {
-        "small":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png",
-        "regular": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188.png",
-        "large":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_200.png"
-      },
-      "handle": "@SirIsaac"
-    },
-    "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-    "created_at": 1461116232227
-  },
-  {
-    "user": {
-      "name": "Descartes",
-      "avatars": {
-        "small":   "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_50.png",
-        "regular": "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc.png",
-        "large":   "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_200.png"
-      },
-      "handle": "@rd" },
-    "content": {
-      "text": "Je pense , donc je suis"
-    },
-    "created_at": 1461113959088
-  },
-  {
-    "user": {
-      "name": "Johann von Goethe",
-      "avatars": {
-        "small":   "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_50.png",
-        "regular": "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1.png",
-        "large":   "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_200.png"
-      },
-      "handle": "@johann49"
-    },
-    "content": {
-      "text": "Es ist nichts schrecklicher als eine tätige Unwissenheit."
-    },
-    "created_at": 1461113796368
-  }
-];
-
 // create html element of each tweet object
 function createTweetElement (tweet) {
   let avatar = $('<img>').attr("src", tweet['user']['avatars']['regular']);
@@ -114,116 +66,24 @@ function renderTweets (tweets) {
     twtElement = createTweetElement(tweet);
     $("#dynamicTweetsContainer").prepend(twtElement);
   });
-
-  $('.tweet').css({
-    'height': '180px',
-    'width': '100%',
-    'background-color': 'white',
-    'margin': '20px auto',
-    'overflow': 'hidden',
-    'border-radius': '10px',
-    'border': '1px solid #bec0c4'
-   });
-
-  $('.tweet header').css({
-    'height': '60px',
-    'background-color': '#eeeeee',
-    'color': '#05214f',
-    'border-bottom': '1px solid #eeeeee'
-  });
-
-  $('.tweet header h2').css({
-    'margin': '0',
-    'line-height': '60px',
-    'padding-left': '0',
-    'display': 'inline-block'
-  });
-
-  $('.tweet header img').css({
-    'height': '60px',
-    'width': '60px',
-    'padding-top': '5px',
-    'padding-bottom': '5px',
-    'background-repeat': 'no-repeat',
-    'background-size': 'cover',
-    'background-position': 'center center',
-    'margin': '0',
-    'padding-right': '10px',
-    'border-radius': '30%',
-    'float': 'left',
-    'padding-left': '10px'
-  });
-
-  $('.tweet header p').css({
-    'margin': '0',
-    'line-height': '60px',
-    'float': 'right',
-    'padding-right': '10px'
-  });
-
-  $('.tweet div').css({
-    'height': '90px',
-    'margin': '0',
-    'padding': '15px',
-    'border-bottom': '1px solid #eeeeee'
-  });
-
-  $('.tweet footer').css({
-    'margin': '0',
-  });
-
-  $('.tweet footer p').css({
-    'margin': '0',
-    'line-height': '30px',
-    'font-size': '12px',
-    'padding-left': '15px',
-    'padding-right': '150px',
-    'display': 'inline-block'
-  });
 }
 
 // render tweet when mouse enters it.
 function hoverEnterEffect(jTweet) {
-  jTweet.css({ 'border': '2px solid grey'});
-
   let header = jTweet.find('header');
-  header.css({'font-weight': 'bold'});
-  header.css({'color': '#3c3d3f'});
-
   let footer = jTweet.find('footer');
 
   let greenFlag = $('<img>').attr("src", '/images/greenFlag.png');
-  greenFlag.css({'height': '20px'});
-  greenFlag.css({'display': 'inline-block'});
-  greenFlag.css({'vertical-align':'middle'});
-
   let greenRetweet = $('<img>').attr("src", '/images/greenRetweet.png');
-  greenRetweet.css({'height': '20px'});
-  greenRetweet.css({'display': 'inline-block'});
-  greenRetweet.css({'vertical-align': 'middle'});
-
   let greenHeart = $('<img>').attr("src", '/images/greenHeart.png');
-  greenHeart.css({'height':'20px'});
-  greenHeart.css({'display': 'inline-block'});
-  greenHeart.css({'vertical-align': 'middle'});
-
   let greenDelete = $('<img>').attr("src", '/images/greenDelete.png');
-  greenDelete.attr("class", 'dltTwtBtn');
-  greenDelete.css({'height':'15px'});
-  greenDelete.css({'display': 'inline-block'});
-  greenDelete.css({'vertical-align': 'middle'});
 
+  greenDelete.attr("class", 'dltTwtBtn');
   footer.append(greenFlag, greenRetweet, greenHeart, greenDelete);
 }
 
 // render tweet when mouse leaves it.
 function hoverExitEffect(jTweet) {
-  jTweet.css({ 'border': '1px solid #bec0c4'});
-
-  let header = jTweet.find('header');
-  header.css({'font-weight': 'normal'});
-  header.css({'color': '#05214f'});
-
   let footer = jTweet.find('footer');
   footer.find('img').remove();
 }

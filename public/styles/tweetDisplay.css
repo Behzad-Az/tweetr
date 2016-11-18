@@ -1,27 +1,28 @@
-#tweetLog {
-  height: 10px;
+.tweet {
+  height: 180px;
   width: 100%;
   background-color: white;
   margin: 20px auto;
   overflow: hidden;
   border-radius: 10px;
-  border-right: 2px solid black;
+  border: 1px solid #bec0c4
 }
 
-#tweetLog article header {
+ .tweet header {
   height: 60px;
   background-color: #eeeeee;
-  border-bottom: 1px solid grey;
+  color: #05214f;
+  border-bottom: 1px solid #eeeeee
 }
 
-#tweetLog article header h2 {
+.tweet header h2 {
   margin: 0;
   line-height: 60px;
-  padding-left:0;
-  display: inline-block;
+  padding-left: 0;
+  display: inline-block
 }
 
-#tweetLog article header img {
+.tweet header img {
   height: 60px;
   width: 60px;
   padding-top: 5px;
@@ -31,37 +32,34 @@
   background-position: center center;
   margin: 0;
   padding-right: 10px;
-  border-radius: 50%;
+  border-radius: 30%;
   float: left;
-  padding-left: 10px;
+  padding-left: 10px
 }
 
-#tweetLog article header p {
+.tweet header p {
   margin: 0;
   line-height: 60px;
   float: right;
-  padding-right: 10px;
+  padding-right: 10px
 }
 
-#tweetLog article div {
+.tweet div {
   height: 90px;
   margin: 0;
-  padding: 5px;
-  border-bottom: 1px solid grey;
+  padding: 15px;
+  border-bottom: 1px solid #eeeeee
 }
 
-#tweetLog article footer {
+.tweet footer {
   margin: 0;
 }
 
-/*#tweetLog article footer img {
-  float: left;
-  opacity: .5;
-}*/
-
-#tweetLog article footer p {
+.tweet footer p {
   margin: 0;
   line-height: 30px;
   font-size: 12px;
-  padding-left: 5px;
+  padding-left: 15px;
+  padding-right: 150px;
+  display: inline-block
 }
