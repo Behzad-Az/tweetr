@@ -50,6 +50,13 @@ function createTweetElement (tweet) {
   likeCountTxt.attr("class", 'likeCountTxt');
   likeCountTxt.data('likeCount', likeCount);
 
+  let greenFlag = $('<img>').attr("src", '/images/greenFlag.png');
+  let greenRetweet = $('<img>').attr("src", '/images/greenRetweet.png');
+  let greenHeart = $('<img>').attr("src", '/images/greenHeart.png');
+  greenHeart.attr("class", 'likeTwtBtn');
+  let greenDelete = $('<img>').attr("src", '/images/greenDelete.png');
+  greenDelete.attr("class", 'dltTwtBtn');
+
   var $tweet = $("<article>").addClass("tweet");
   var header = $('<header>');
   header.attr('id', tweet["_id"]);
@@ -57,7 +64,7 @@ function createTweetElement (tweet) {
   var footer = $('<footer>');
   header.append(avatar, username, handle);
   middle.append(content);
-  footer.append(date, likeCountTxt);
+  footer.append(date, likeCountTxt, greenFlag, greenRetweet, greenHeart, greenDelete);
 
   $tweet.append(header, middle, footer);
   return $tweet;
@@ -72,26 +79,26 @@ function renderTweets (tweets) {
   });
 }
 
-// render tweet when mouse enters it.
-function hoverEnterEffect(jTweet) {
-  let header = jTweet.find('header');
-  let footer = jTweet.find('footer');
+// render tweet when mouse enters it. REPLACED WITH SCSS.
+// function hoverEnterEffect(jTweet) {
+//   let header = jTweet.find('header');
+//   let footer = jTweet.find('footer');
 
-  let greenFlag = $('<img>').attr("src", '/images/greenFlag.png');
-  let greenRetweet = $('<img>').attr("src", '/images/greenRetweet.png');
-  let greenHeart = $('<img>').attr("src", '/images/greenHeart.png');
-  greenHeart.attr("class", 'likeTwtBtn');
-  let greenDelete = $('<img>').attr("src", '/images/greenDelete.png');
-  greenDelete.attr("class", 'dltTwtBtn');
+//   let greenFlag = $('<img>').attr("src", '/images/greenFlag.png');
+//   let greenRetweet = $('<img>').attr("src", '/images/greenRetweet.png');
+//   let greenHeart = $('<img>').attr("src", '/images/greenHeart.png');
+//   greenHeart.attr("class", 'likeTwtBtn');
+//   let greenDelete = $('<img>').attr("src", '/images/greenDelete.png');
+//   greenDelete.attr("class", 'dltTwtBtn');
 
-  footer.append(greenFlag, greenRetweet, greenHeart, greenDelete);
-}
+//   footer.append(greenFlag, greenRetweet, greenHeart, greenDelete);
+// }
 
-// render tweet when mouse leaves it.
-function hoverExitEffect(jTweet) {
-  let footer = jTweet.find('footer');
-  footer.find('img').remove();
-}
+// render tweet when mouse leaves it. REPLACED WITH SCSS.
+// function hoverExitEffect(jTweet) {
+//   // let footer = jTweet.find('footer');
+//   //footer.find('img').remove();
+// }
 
 // converts javascript time to time passed in minutes, days or years.
 function getTimePassed(time) {

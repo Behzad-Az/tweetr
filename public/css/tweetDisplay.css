@@ -11,13 +11,7 @@
       font-weight: bold;
       overflow: hidden; }
     .tweet:hover footer img {
-      display: inline-block;
-      float: right;
-      height: 15px;
-      margin: 0;
-      position: relative;
-      transform: translateY(-50%);
-      top: 50%; }
+      display: inline-block; }
   .tweet header {
     background-color: #eeeeee;
     border-bottom: 1px solid #eeeeee;
@@ -68,3 +62,11 @@
       line-height: 25px;
       margin: 0;
       padding-right: 10px; }
+    .tweet footer img {
+      display: none;
+      float: right;
+      height: 15px;
+      margin: 0;
+      position: relative;
+      transform: translateY(-50%);
+      top: 50%; }

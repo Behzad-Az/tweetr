@@ -30,13 +30,20 @@ $(function () {
 
   // action to be implemented when like button is clicked.
   $('#dynamicTweetsContainer').on('click', '.likeTwtBtn', function(event) {
-    $(this).css({'background-color': 'black'});
-    let tweetItem = $(this).parent().parent();
+    let heart = $(this);
+    let tweetItem = heart.parent().parent();
     let countTxt = tweetItem.find('.likeCountTxt');
     let id = tweetItem.find('header').attr('id');
 
     let count = countTxt.data('likeCount');
-    count += 1;
+
+    if (heart.css('background-color') === 'rgb(0, 0, 255)') {
+      count--;
+      heart.css({'background-color':'white'});
+    } else {
+      count++;
+      heart.css({'background-color':'rgb(0, 0, 255)'});
+    }
 
     countTxt.data('likeCount', count);
     countTxt.text(`Likes: ${count}`);
@@ -50,9 +57,6 @@ $(function () {
         type: 'POST',
         url: '/',
         data: templateVars,
-        success: function (data) {
-          console.log('successfully updated the count');
-        }
       });
   });
 

@@ -22,12 +22,6 @@ $defaultGrayColor: #eeeeee;
     footer {
       img {
         display: inline-block;
-        float: right;
-        height: $hoverImgHeight;
-        margin: 0;
-        position: relative;
-        transform: translateY(-50%);
-        top: 50%;
       }
     }
   }
@@ -96,5 +90,15 @@ $defaultGrayColor: #eeeeee;
       margin: 0;
       padding-right: $contentPadding;
     }
+
+    img {
+        display: none;
+        float: right;
+        height: $hoverImgHeight;
+        margin: 0;
+        position: relative;
+        transform: translateY(-50%);
+        top: 50%;
+      }
   }
 }
