@@ -24,6 +24,10 @@ $defaultGrayColor: #eeeeee;
         display: inline-block;
         float: right;
         height: $hoverImgHeight;
+        margin: 0;
+        position: relative;
+        transform: translateY(-50%);
+        top: 50%;
       }
     }
   }
@@ -75,7 +79,7 @@ $defaultGrayColor: #eeeeee;
 
     p {
       margin: 0px;
-      padding: 10px;
+      padding: $contentPadding;
     }
   }
 
@@ -88,6 +92,7 @@ $defaultGrayColor: #eeeeee;
     p {
       display: inline-block;
       font-size: 12px;
+      line-height: $footerHeight;
       margin: 0;
     }
   }

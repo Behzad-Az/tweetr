@@ -1,21 +1,23 @@
 $headerDefaultColor: #00a087;
+$mainAreaMargin: 2em;
+$contentPadding: 10px;
 
 #nav-bar {
   background-color: $headerDefaultColor;
   color: #e8fdff;
   font-family: 'Roboto Condensed', sans-serif;
   height: 80px;
-  padding-left: 2em;
-  padding-right: 2em;
-  position: fixed;
   overflow: hidden;
+  padding-left: $mainAreaMargin;
+  padding-right: $mainAreaMargin;
+  position: fixed;
   width: 100%;
   z-index: 1;
 
   .logo {
     float: left;
     height: 80px;
-    padding-right: 10px;
+    padding-right: $contentPadding;
     width: 80px;
   }
 
@@ -27,25 +29,24 @@ $headerDefaultColor: #00a087;
 
   .composeBtn {
     background-color: #838E83;
-    color: white;
-    opacity: .8;
     border: 1px solid black;
     border-radius: 5px;
-    height: 50px;
-    width: 150px;
-    text-align: center;
+    color: white;
     display: inline-block;
-    font-size: 20px;
-    margin: 0;
     float:right;
+    font-size: 20px;
+    height: 50px;
     margin-right: 20px;
     margin-top: 15px;
+    opacity: .8;
+    text-align: center;
+    width: 150px;
 
     &:hover {
       background-color: #EBEDE7;
       color: $headerDefaultColor;
-      opacity: 1;
       font-weight: bold;
+      opacity: 1;
     }
   }
 }

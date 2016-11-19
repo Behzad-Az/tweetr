@@ -13,7 +13,11 @@
     .tweet:hover footer img {
       display: inline-block;
       float: right;
-      height: 15px; }
+      height: 15px;
+      margin: 0;
+      position: relative;
+      transform: translateY(-50%);
+      top: 50%; }
   .tweet header {
     background-color: #eeeeee;
     border-bottom: 1px solid #eeeeee;
@@ -61,4 +65,5 @@
     .tweet footer p {
       display: inline-block;
       font-size: 12px;
+      line-height: 25px;
       margin: 0; }
