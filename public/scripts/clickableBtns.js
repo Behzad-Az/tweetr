@@ -30,6 +30,7 @@ $(function () {
 
   // action to be implemented when like button is clicked.
   $('#dynamicTweetsContainer').on('click', '.likeTwtBtn', function(event) {
+    $(this).css({'background-color': 'black'});
     let tweetItem = $(this).parent().parent();
     let countTxt = tweetItem.find('.likeCountTxt');
     let id = tweetItem.find('header').attr('id');
