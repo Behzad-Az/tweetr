@@ -125,11 +125,11 @@ function $ajaxGETLoadTweets(){
     dataType: 'JSON',
     success: function (data){
       renderTweets(data);
-      $('.tweet').on('mouseenter', function(event) {
-        hoverEnterEffect($(this));
-      }).on('mouseleave', function(event) {
-        hoverExitEffect($(this));
-      });
+      // $('.tweet').on('mouseenter', function(event) {
+      //   hoverEnterEffect($(this));
+      // }).on('mouseleave', function(event) {
+      //   hoverExitEffect($(this));
+      // });
     }
   });
 }
