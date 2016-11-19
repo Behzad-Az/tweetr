@@ -36,6 +36,12 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
     res.redirect("/");
   });
 
+  app.post("/", (req, res) => {
+    db.collection('tweets').updateOne({"_id":ObjectId(req.body.id)},
+                                      {$set:{'likeCount': req.body.likeCount}});
+    res.redirect("/");
+  });
+
 });
 
 app.listen(PORT, () => {

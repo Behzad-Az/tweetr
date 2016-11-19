@@ -94,6 +94,7 @@ $defaultGrayColor: #eeeeee;
       font-size: 12px;
       line-height: $footerHeight;
       margin: 0;
+      padding-right: $contentPadding;
     }
   }
 }

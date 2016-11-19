@@ -17,7 +17,7 @@ $(function () {
   $('#dynamicTweetsContainer').on('click', '.dltTwtBtn', function(event) {
     let tweetItem = $(this).parent().parent();
     let id = tweetItem.find('header').attr('id');
-    let templateVars = { 'id': id }
+    let templateVars = { 'id': id };
     $.ajax({
         type: 'POST',
         url: '/delete',
@@ -27,4 +27,32 @@ $(function () {
         }
       });
   });
+
+  // action to be implemented when like button is clicked.
+  $('#dynamicTweetsContainer').on('click', '.likeTwtBtn', function(event) {
+    let tweetItem = $(this).parent().parent();
+    let countTxt = tweetItem.find('.likeCountTxt');
+    let id = tweetItem.find('header').attr('id');
+
+    let count = countTxt.data('likeCount');
+    count += 1;
+
+    countTxt.data('likeCount', count);
+    countTxt.text(`Likes: ${count}`);
+
+    let templateVars = {
+      'id': id,
+      'likeCount': count
+    };
+
+    $.ajax({
+        type: 'POST',
+        url: '/',
+        data: templateVars,
+        success: function (data) {
+          console.log('successfully updated the count');
+        }
+      });
+  });
+
 });

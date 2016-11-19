@@ -23,7 +23,6 @@ $(function () {
         url: url,
         data: $form.serialize(),
         success: function (data) {
-          console.log('success in POST /Tweets');
           txtArea.val('');
           charCounter.text('140');
         }
@@ -42,9 +41,14 @@ function createTweetElement (tweet) {
   let avatar = $('<img>').attr("src", tweet['user']['avatars']['regular']);
   let username = $('<h2>').text(tweet['user']['name']);
   let handle = $('<p>').text(tweet['user']['handle']);
-
   let content = $('<p>').text(tweet['content']['text']);
   let date = $('<p>').text(getTimePassed(tweet['created_at']));
+  let likeCount = Number(tweet['likeCount']);
+
+  if (!likeCount) { likeCount = 0; }
+  let likeCountTxt = $('<p>').text(`Likes ${likeCount}`);
+  likeCountTxt.attr("class", 'likeCountTxt');
+  likeCountTxt.data('likeCount', likeCount);
 
   var $tweet = $("<article>").addClass("tweet");
   var header = $('<header>');
@@ -53,7 +57,7 @@ function createTweetElement (tweet) {
   var footer = $('<footer>');
   header.append(avatar, username, handle);
   middle.append(content);
-  footer.append(date);
+  footer.append(date, likeCountTxt);
 
   $tweet.append(header, middle, footer);
   return $tweet;
@@ -76,9 +80,10 @@ function hoverEnterEffect(jTweet) {
   let greenFlag = $('<img>').attr("src", '/images/greenFlag.png');
   let greenRetweet = $('<img>').attr("src", '/images/greenRetweet.png');
   let greenHeart = $('<img>').attr("src", '/images/greenHeart.png');
+  greenHeart.attr("class", 'likeTwtBtn');
   let greenDelete = $('<img>').attr("src", '/images/greenDelete.png');
-
   greenDelete.attr("class", 'dltTwtBtn');
+
   footer.append(greenFlag, greenRetweet, greenHeart, greenDelete);
 }
 
@@ -112,7 +117,6 @@ function $ajaxGETLoadTweets(){
     url: "/tweets",
     dataType: 'JSON',
     success: function (data){
-      console.log("success in GET /tweets");
       renderTweets(data);
       $('.tweet').on('mouseenter', function(event) {
         hoverEnterEffect($(this));
