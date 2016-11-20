@@ -5,9 +5,10 @@ const PORT          = 8080;
 const express       = require("express");
 const bodyParser    = require("body-parser");
 const app           = express();
-require('dotenv').config();
+//require('dotenv').config();
 const MongoClient = require("mongodb").MongoClient;
-const MONGODB_URI = process.env.MONGODB_URI;;
+//const MONGODB_URI = process.env.MONGODB_URI;;
+const MONGODB_URI = "mongodb://localhost:27017/twtrData";
 var ObjectId = require('mongodb').ObjectID;
 
 
