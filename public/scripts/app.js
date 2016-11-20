@@ -80,7 +80,7 @@ function renderTweets (tweets) {
 }
 
 // render tweet when mouse enters it. REPLACED WITH SCSS.
-// function hoverEnterEffect(jTweet) {
+// function vagrant EnterEffect(jTweet) {
 //   let header = jTweet.find('header');
 //   let footer = jTweet.find('footer');
 
