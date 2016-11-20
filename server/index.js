@@ -5,10 +5,10 @@ const PORT          = 8080;
 const express       = require("express");
 const bodyParser    = require("body-parser");
 const app           = express();
-require('dotenv').config();
+//require('dotenv').config();
 const MongoClient = require("mongodb").MongoClient;
-const MONGODB_URI = process.env.MONGODB_URI;;
-//const MONGODB_URI = "mongodb://localhost:27017/twtrData";
+//const MONGODB_URI = process.env.MONGODB_URI;;
+const MONGODB_URI = "mongodb://localhost:27017/twtrData";
 var ObjectId = require('mongodb').ObjectID;
 
 
@@ -34,13 +34,13 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
 
   // delete specific tweet when requested.
   app.post("/delete", (req, res) => {
-    db.collection('tweets').remove({"_id":ObjectId(req.body.id)});
+    db.collection('tweets').remove({"_id": ObjectId(req.body.id)});
     res.redirect("/");
   });
 
   app.post("/", (req, res) => {
-    db.collection('tweets').updateOne({"_id":ObjectId(req.body.id)},
-                                      {$set:{'likeCount': req.body.likeCount}});
+    db.collection('tweets').updateOne({"_id": ObjectId(req.body.id)},
+                                      {$set: {'likeCount': req.body.likeCount}});
     res.redirect("/");
   });
 

@@ -1,4 +1,10 @@
 // performs character count on the text box.
+const regexAstralSymbols = /[\uD800-\uDBFF][\uDC00-\uDFFF]/g;
+
+function countSymbols(string) {
+  return string.replace(regexAstralSymbols, '_').length;
+}
+
 $(document).ready( function () {
   let txtArea = $(".container .new-tweet form textarea");
 
@@ -10,9 +16,3 @@ $(document).ready( function () {
     counter.css( { 'color': color } );
   });
 });
-
-const regexAstralSymbols = /[\uD800-\uDBFF][\uDC00-\uDFFF]/g;
-
-function countSymbols(string) {
-  return string.replace(regexAstralSymbols, '_').length;
-}

@@ -20,7 +20,6 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
     });
   }
 
-
   getTweets((err, tweets) => {
     if (err) throw err;
     console.log("Logging each tweet:");

@@ -5,9 +5,8 @@ $(function () {
 
     if (newTwtBox.is(":visible")) {
       newTwtBox.slideUp(100);
-    }
-    else {
-      newTwtBox.slideDown(100,function(){
+    } else {
+      newTwtBox.slideDown(100, function() {
         newTwtBox.find('textArea').focus();
       });
     }
@@ -19,13 +18,13 @@ $(function () {
     let id = tweetItem.find('header').attr('id');
     let templateVars = { 'id': id };
     $.ajax({
-        type: 'POST',
-        url: '/delete',
-        data: templateVars,
-        success: function (data) {
-          tweetItem.remove();
-        }
-      });
+      type: 'POST',
+      url: '/delete',
+      data: templateVars,
+      success: function (data) {
+        tweetItem.remove();
+      }
+    });
   });
 
   // action to be implemented when like button is clicked.
@@ -39,10 +38,10 @@ $(function () {
 
     if (heart.css('background-color') === 'rgb(0, 0, 255)') {
       count--;
-      heart.css({'background-color':'white'});
+      heart.css({'background-color': 'white'});
     } else {
       count++;
-      heart.css({'background-color':'rgb(0, 0, 255)'});
+      heart.css({'background-color': 'rgb(0, 0, 255)'});
     }
 
     countTxt.data('likeCount', count);
@@ -54,10 +53,10 @@ $(function () {
     };
 
     $.ajax({
-        type: 'POST',
-        url: '/',
-        data: templateVars,
-      });
+      type: 'POST',
+      url: '/',
+      data: templateVars
+    });
   });
 
 });

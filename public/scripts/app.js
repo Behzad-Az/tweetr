@@ -3,38 +3,23 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
-$(function () {
 
-  // submit jQuery POST request when form is submitted
-  let $form = $(".new-tweet form");
-  $form.submit( function (event) {
-    event.preventDefault();
-    let url = $form.attr('action');
-    let method = $form.attr('method');
-    let txtArea = $form.find('textarea');
-    let charCounter = $form.find('.counter');
-    let content = txtArea.val();
+ // converts javascript time to time passed in minutes, days or years.
+function getTimePassed(time) {
+  let diff = Date.now() - time;
+  let tempTime = Math.round(diff / 60000);
+  if (tempTime < 1) { return 'less than a minute ago'; }
+  else if (tempTime < 60) { return  `${tempTime} minutes ago`; }
+  else { tempTime = Math.round(tempTime / 60); }
 
-    if (!content) { alert('Don\'t forget to enter tweet first!'); }
-    else if (content.length > 140) { alert('Please shorten your tweet to less than or equal to 140 chars'); }
-    else {
-      $.ajax({
-        type: method,
-        url: url,
-        data: $form.serialize(),
-        success: function (data) {
-          txtArea.val('');
-          charCounter.text('140');
-        }
-      }).done(function(){
-        $ajaxGETLoadTweets();
-      });
-    }
-  });
+  if (tempTime < 24) { return `${tempTime} hours ago`; }
+  else { tempTime = Math.round(tempTime / 24); }
 
-  $ajaxGETLoadTweets();
+  if (tempTime < 365) { return `${tempTime} days ago`; }
+  else { tempTime = Math.round(tempTime / 365); }
 
-});
+  return `${tempTime} years ago`;
+}
 
 // create html element of each tweet object
 function createTweetElement (tweet) {
@@ -79,6 +64,64 @@ function renderTweets (tweets) {
   });
 }
 
+ // submit jQuery GET request from /tweets when page is loaded
+function $ajaxGETLoadTweets(){
+  $.ajax({
+    type: "GET",
+    url: "/tweets",
+    dataType: 'JSON',
+    success: function (data){
+      renderTweets(data);
+      // REPLACED WITH SCSS
+      // $('.tweet').on('mouseenter', function(event) {
+      //   hoverEnterEffect($(this));
+      // }).on('mouseleave', function(event) {
+      //   hoverExitEffect($(this));
+      // });
+    }
+  });
+}
+
+$(function () {
+
+  // submit jQuery POST request when form is submitted
+  let $form = $(".new-tweet form");
+  let $message = $("#errorMessage");
+  $form.submit( function (event) {
+    event.preventDefault();
+    let url = $form.attr('action');
+    let method = $form.attr('method');
+    let txtArea = $form.find('textarea');
+    let charCounter = $form.find('.counter');
+    let content = txtArea.val();
+
+    if (!content) {
+      $message.css({'display': 'none'});
+      $message.text('Don\'t forget to enter tweet first');
+      $message.fadeIn( 400 ).delay( 2000 ).fadeOut(400);
+    } else if (content.length > 140) {
+      $message.css({'display': 'none'});
+      $message.text('Tweet charecter limit exceeded');
+      $message.fadeIn( 400 ).delay( 2000 ).fadeOut(400);
+    } else {
+      $.ajax({
+        type: method,
+        url: url,
+        data: $form.serialize(),
+        success: function (data) {
+          txtArea.val('');
+          charCounter.text('140');
+        }
+      }).done(function(){
+        $ajaxGETLoadTweets();
+      });
+    }
+  });
+
+  $ajaxGETLoadTweets();
+
+});
+
 // render tweet when mouse enters it. REPLACED WITH SCSS.
 // function vagrant EnterEffect(jTweet) {
 //   let header = jTweet.find('header');
@@ -99,38 +142,4 @@ function renderTweets (tweets) {
 //   // let footer = jTweet.find('footer');
 //   //footer.find('img').remove();
 // }
-
-// converts javascript time to time passed in minutes, days or years.
-function getTimePassed(time) {
-  let diff = Date.now() - time;
-  let tempTime = Math.round(diff/60000);
-  if (tempTime < 1) return 'less than a minute ago';
-  else if (tempTime < 60) return  `${tempTime} minutes ago`;
-  else tempTime = Math.round(tempTime / 60);
-
-  if (tempTime < 24) return `${tempTime} hours ago`;
-  else tempTime = Math.round(tempTime/24);
-
-  if (tempTime < 365) return `${tempTime} days ago`;
-  else tempTime = Math.round(tempTime/365);
-
-  return `${tempTime} years ago`;
-}
-
-// submit jQuery GET request from /tweets when page is loaded
-function $ajaxGETLoadTweets(){
-  $.ajax({
-    type: "GET",
-    url: "/tweets",
-    dataType: 'JSON',
-    success: function (data){
-      renderTweets(data);
-      // $('.tweet').on('mouseenter', function(event) {
-      //   hoverEnterEffect($(this));
-      // }).on('mouseleave', function(event) {
-      //   hoverExitEffect($(this));
-      // });
-    }
-  });
-}
 
