@@ -2,20 +2,6 @@
 @import 'new-tweet.scss';
 @import 'tweetDisplay.scss';
 
-// #errorMessage {
-//   display: none;
-//   margin: 0 auto;
-//   background-color: #eeeeee;
-//   text-align: center;
-//   // p {
-//   //   display: inline-block;
-//   //   margin: 0 50% 10px;
-//   //   text-align: center;
-//   //   background-color: #eeeeee;
-//   // }
-// }
-
-
 #errorMessage {
   display: none;
   margin: 0 auto 10px;
@@ -28,30 +14,3 @@
   font-weight: bold;
   border: 1px solid black;
 }
-
-//   -moz-animation: cssAnimation 0s ease-in 3s forwards;
-//   /* Firefox */
-//   -webkit-animation: cssAnimation 0s ease-in 3s forwards;
-//   /* Safari and Chrome */
-//   -o-animation: cssAnimation 0s ease-in 3s forwards;
-//   /* Opera */
-//   animation: cssAnimation 0s ease-in 3s forwards;
-//   -webkit-animation-fill-mode: forwards;
-//   animation-fill-mode: forwards;
-// }
-// @keyframes cssAnimation {
-//   to {
-//       width:0;
-//       height:0;
-//       overflow:hidden;
-//       // display: none;
-//   }
-// }
-// @-webkit-keyframes cssAnimation {
-//   to {
-//       width:0;
-//       height:0;
-//       // visibility:hidden;
-//       //display: none;
-//   }
-// }

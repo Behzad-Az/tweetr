@@ -72,12 +72,6 @@ function $ajaxGETLoadTweets(){
     dataType: 'JSON',
     success: function (data){
       renderTweets(data);
-      // REPLACED WITH SCSS
-      // $('.tweet').on('mouseenter', function(event) {
-      //   hoverEnterEffect($(this));
-      // }).on('mouseleave', function(event) {
-      //   hoverExitEffect($(this));
-      // });
     }
   });
 }
@@ -121,25 +115,3 @@ $(function () {
   $ajaxGETLoadTweets();
 
 });
-
-// render tweet when mouse enters it. REPLACED WITH SCSS.
-// function vagrant EnterEffect(jTweet) {
-//   let header = jTweet.find('header');
-//   let footer = jTweet.find('footer');
-
-//   let greenFlag = $('<img>').attr("src", '/images/greenFlag.png');
-//   let greenRetweet = $('<img>').attr("src", '/images/greenRetweet.png');
-//   let greenHeart = $('<img>').attr("src", '/images/greenHeart.png');
-//   greenHeart.attr("class", 'likeTwtBtn');
-//   let greenDelete = $('<img>').attr("src", '/images/greenDelete.png');
-//   greenDelete.attr("class", 'dltTwtBtn');
-
-//   footer.append(greenFlag, greenRetweet, greenHeart, greenDelete);
-// }
-
-// render tweet when mouse leaves it. REPLACED WITH SCSS.
-// function hoverExitEffect(jTweet) {
-//   // let footer = jTweet.find('footer');
-//   //footer.find('img').remove();
-// }
-
